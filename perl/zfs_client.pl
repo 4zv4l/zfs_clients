@@ -22,10 +22,6 @@ sub getSize($conn) {
     $filesize; 
 }
 
-sub getCmd($conn) {
-
-}
-
 sub download($conn) {
     print "> ";
     my $filename = scalar <STDIN>;
@@ -51,6 +47,7 @@ sub download($conn) {
     } else {
         # download file and check md5sum
         my $downloaded = 0;
+        $filename =~ s{/}{__};
         open my $output, '>', $filename;
         while ($downloaded < $filesize)
         {
